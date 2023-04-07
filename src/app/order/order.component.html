@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="my-4">Order History</h2>
+  <div *ngIf="orders && orders.length > 0; else noOrders">
+    <div class="order-card mb-4" *ngFor="let order of orders">
+      <div class="card">
+        <div class="card-header">
+          Order ID: {{ order.id }} - Order Date: {{ order.orderTime | date }}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let dish of order.dishes">
+            {{ dish.menu.name }} - {{ dish.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }}
+            <br>
+            <ng-container *ngIf="dish.flavors.length > 0">Flavors:</ng-container>
+            <ul *ngIf="dish.flavors.length > 0">
+              <li *ngFor="let flavor of dish.flavors">
+                {{ flavor.info }} ({{ flavor.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }})
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="card-footer">
+          Total: {{ order.totalAmount | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noOrders>
+    <p>No orders found.</p>
+  </ng-template>
+</div>

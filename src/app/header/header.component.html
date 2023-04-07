@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm navbar-dark gray-navbar">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" routerLink="/home">
+        <a class="nav-link" routerLinkActive="my-active">Home</a>
+      </li>
+      <li class="nav-item" routerLink="/restaurant">
+        <a class="nav-link" routerLinkActive="my-active">Restaurants</a>
+      </li>
+      <li class="nav-item" routerLink="/order">
+        <a class="nav-link" routerLinkActive="my-active">Orders</a>
+      </li>
+      <li class="nav-item" routerLink="/account">
+        <a class="nav-link" routerLinkActive="my-active">Account</a>
+      </li>
+      <li class="nav-item" routerLink="/web-admin">
+        <a class="nav-link" routerLinkActive="my-active">Web Admin</a>
+      </li>
+      <li class="nav-item" routerLink="/restaurant-manager">
+        <a class="nav-link" routerLinkActive="my-active">Restaurant Manager</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <li *ngIf="showCartIcon" class="nav-item shopping-cart-container" (click)="toggleCart()">
+        <button mat-raised-button color="warn" class="cart-button">
+          <i class="material-icons shopping-cart-icon">shopping_cart</i>
+          <span class="quantity">{{totalQuantity}}</span>
+        </button>
+      </li>
+      <li class="nav-item" routerLink="/login">
+        <a *ngIf="!authService.user; else logoutTemplate" class="nav-link" routerLinkActive="my-active">Login</a>
+        <ng-template #logoutTemplate>
+          <a (click)="logout()" class="nav-link" routerLinkActive="my-active">Logout</a>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>

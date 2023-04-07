@@ -1,0 +1,12 @@
+<section class="popular-restaurants">
+  <h2>Popular Restaurants Near You</h2>
+  <div class="restaurant-container">
+    <div class="restaurant-card" *ngFor="let restaurant of restaurants" (click)="onRestaurantClick(restaurant.id)">
+      <img [src]="restaurant.image" alt="{{ restaurant.name }}">
+      <div class="details">
+        <h2>{{ restaurant.name }}</h2>
+        <div class="category">{{ restaurant.restaurantCategory }}</div>
+      </div>
+    </div>
+  </div>
+</section>

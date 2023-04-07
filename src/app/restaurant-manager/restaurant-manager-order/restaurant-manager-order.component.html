@@ -1,0 +1,85 @@
+<mat-form-field class="restaurant-manager-order-search-form-field">
+  <mat-label>Search by Order ID</mat-label>
+  <input matInput type="text" [(ngModel)]="searchOrderId">
+  <button *ngIf="searchOrderId" matSuffix mat-icon-button aria-label="Clear" (click)="searchOrderId=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-form-field class="restaurant-manager-order-search-form-field">
+  <mat-label>Search by User ID</mat-label>
+  <input matInput type="text" [(ngModel)]="searchUserId">
+  <button *ngIf="searchUserId" matSuffix mat-icon-button aria-label="Clear" (click)="searchUserId=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<div class="restaurant-manager-order">
+  <h2>Orders</h2>
+  <ng-container *ngIf="orders">
+    <mat-table [dataSource]="orders | orderFilter:searchUserId:searchOrderId">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalAmount">
+        <mat-header-cell *matHeaderCellDef>Total Amount</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.totalAmount }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userId">
+        <mat-header-cell *matHeaderCellDef>User ID</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.userId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.address }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.phone }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="orderTime">
+        <mat-header-cell *matHeaderCellDef>Order Time</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.orderTime | date:'short' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.status }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="remark">
+        <mat-header-cell *matHeaderCellDef>Remark</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.remark }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dishes">
+        <mat-header-cell *matHeaderCellDef>Dishes</mat-header-cell>
+        <mat-cell *matCellDef="let order">
+          <ng-container *ngFor="let dish of order.dishes; let last = last">
+            {{ dish ? dish.menu.name : 'Undefined' }}<ng-container *ngIf="!last">, </ng-container>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let order">
+          <button mat-icon-button color="warn" *ngIf="order.status !== statusEnum.CANCELED" (click)="cancelOrder(order)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <p *ngIf="displayNoOrderMessage()" class="no-order-message">No corresponding order</p>
+  </ng-container>
+</div>

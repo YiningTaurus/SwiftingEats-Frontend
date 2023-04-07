@@ -1,0 +1,23 @@
+.restaurant-manager-order {
+  //display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  margin-right: 16px;
+}
+
+mat-table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.no-order-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.restaurant-manager-order-search-form-field {
+  width: 200px;
+}

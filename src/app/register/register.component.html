@@ -1,0 +1,55 @@
+<div fxLayout fxLayoutAlign="center" style="margin: 50px 50px;">
+  <mat-card fxLayout="column" fxFlex="1 1 50%" fxFlex.lt-sm="1 1 auto">
+    <mat-card-header>
+      <mat-card-title style="margin-top: 10px; margin-left: 20px; margin-bottom: 10px">Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="registerFormInstance" (ngSubmit)="register(selectedRole)">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username">
+          <mat-error
+            *ngIf="registerFormInstance.get('username')?.getError('required')">
+            Username is required
+          </mat-error>
+          <mat-error
+            *ngIf="registerFormInstance.get('username')?.getError('email')">
+            Username must be an email
+          </mat-error>
+          <mat-error
+            *ngIf="registerFormInstance.get('username')?.getError('collision')">
+            The username has been used, please choose another one.
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="column" formGroupName="passwordGroup">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" >
+            <mat-error
+              *ngIf="registerFormInstance.get('passwordGroup.password')?.getError('required')">
+              Password is required
+            </mat-error>
+            <mat-error
+              *ngIf="registerFormInstance.get('passwordGroup.password')?.getError('minlength')">
+              Password must be no less than 3 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" matInput formControlName="confirmPassword">
+          </mat-form-field>
+          <mat-error
+            *ngIf="registerFormInstance.get('passwordGroup')?.getError('passwordsNotMatch')">
+            {{registerFormInstance.get('passwordGroup')?.getError('passwordsNotMatch')}}
+          </mat-error>
+        </div>
+        <p>
+          <button type="submit" mat-raised-button color="primary">{{registerButtonText}}</button>
+          <a mat-button color="accent" routerLink="/login" style="margin-left: 20px">Already in? Back to Login!</a>
+        </p>
+      </form>
+<!--      <p>{{registerFormInstance.errors | json}}</p>-->
+    </mat-card-content>
+
+  </mat-card>
+</div>

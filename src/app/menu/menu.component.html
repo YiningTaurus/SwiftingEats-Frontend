@@ -1,0 +1,8 @@
+<div class="menu-container">
+  <div class="menu-card" *ngFor="let menu of menus" (click)="openMenuDetailDialog(menu)">
+    <img [src]="menu.image" alt="{{ menu.name }}" class="menu-image">
+    <h3>{{menu.name}}</h3>
+    <p>{{menu.description}}</p>
+    <p>Price: {{menu.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode}}</p>
+  </div>
+</div>

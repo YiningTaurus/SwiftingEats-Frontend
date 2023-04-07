@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{ data.menu.name }}</h2>
+<mat-dialog-content class="menu-detail-content" *ngIf="data.menu.isAvailable; else unavailableTemplate">
+  <img [src]="data.menu.image" alt="{{ data.menu.name }}" class="menu-image">
+  <p>{{ data.menu.description }}</p>
+  <p>Price: {{ data.menu.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode}}</p>
+  <div class="flavors">
+    <ng-container *ngFor="let category of sameCategoryFlavors | keyvalue">
+      <hr>
+      <div *ngFor="let flavor of castToFlavorArray(category.value); let isFirst = first">
+        <ng-container *ngIf="isFirst">
+          <h3><strong>{{ flavor.flavorCategory.type }}</strong><span *ngIf="flavor.flavorCategory.isMandatory" class="mandatory">*</span></h3>
+        </ng-container>
+        <ng-container *ngIf="flavor.flavorCategory.isSingleton; else checkboxTemplate">
+          <label>
+            <input type="radio" name="{{flavor.flavorCategory.type}}" (change)="onRadioChange($event, flavor)" [required]="flavor.flavorCategory.isMandatory">
+            <span class="flavor-info">{{flavor.info}}</span>
+            <span class="flavor-price">{{ flavor.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }}</span>
+          </label>
+        </ng-container>
+        <ng-template #checkboxTemplate>
+          <label>
+            <input type="checkbox" (change)="onCheckboxChange($event, flavor)" [required]="flavor.flavorCategory.isMandatory">
+            <span class="flavor-info">{{flavor.info}}</span>
+            <span class="flavor-price">{{ flavor.price | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }}</span>
+          </label>
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+
+<ng-template #unavailableTemplate>
+  <mat-dialog-content class="menu-detail-content">
+    <p>Sorry, this dish is temporarily unavailable. QAQ</p>
+  </mat-dialog-content>
+</ng-template>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close="">Cancel</button>
+  <button mat-button (click)="addToCart()" [disabled]="selectedFlavors.length === 0">{{data.isEdit === true? 'Update cart' : 'Add to cart'}}</button>
+</mat-dialog-actions>

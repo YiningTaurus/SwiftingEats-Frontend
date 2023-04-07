@@ -1,0 +1,58 @@
+<div>
+  <mat-card>
+    <mat-card-title>User Information</mat-card-title>
+    <mat-card-content>
+      <p>Role: {{ user.role }}</p>
+      <p>Username: {{ user.username }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="account">
+  <form (submit)="saveUserDetail(userDetail)">
+    <ng-container *ngIf="userDetail && user.id !== -1">
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="userDetail.name" name="name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>Phone</mat-label>
+        <input matInput [(ngModel)]="userDetail.phone" name="phone" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>Address 1</mat-label>
+        <input matInput [(ngModel)]="userDetail.address1" name="address1" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>Address 2</mat-label>
+        <input matInput [(ngModel)]="userDetail.address2" name="address2" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>City</mat-label>
+        <input matInput [(ngModel)]="userDetail.city" name="city" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>State</mat-label>
+        <input matInput [(ngModel)]="userDetail.state" name="state" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="account-input-field">
+        <mat-label>Zipcode</mat-label>
+        <input matInput [(ngModel)]="userDetail.zipcode" name="zipcode" required />
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary">
+        {{ userDetailExists ? 'Update User Details' : 'Add User Details' }}
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="user.id === -1">
+      <p>You have not provided any user details yet.</p>
+    </ng-container>
+  </form>
+</div>

@@ -1,0 +1,72 @@
+<div class="restaurant-manager-flavor">
+  <h2>Flavors Manage</h2>
+  <div *ngFor="let category of flavorCategories" class="RestaurantManagerFlavor-card">
+    <mat-card>
+      <mat-card-title *ngIf="editingFlavorCategoryId !== category.id">{{ category.type }}</mat-card-title>
+      <mat-card-title *ngIf="editingFlavorCategoryId === category.id">
+        <input [(ngModel)]="category.type" placeholder="Category Type">
+      </mat-card-title>
+      <ng-container *ngIf="editingFlavorCategoryId !== category.id">
+        <div class="RestaurantManagerFlavor-button-row">
+          <button mat-stroked-button (click)="startEditingFlavorCategory(category.id)">Edit</button>
+          <button mat-stroked-button (click)="deleteFlavorCategory(category)">Delete</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="editingFlavorCategoryId === category.id">
+        <mat-slide-toggle [(ngModel)]="category.isSingleton">Is Singleton?</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="category.isMandatory">Is Mandatory?</mat-slide-toggle>
+        <div class="RestaurantManagerFlavor-button-row">
+          <button mat-stroked-button (click)="cancelEditingFlavorCategory()">Cancel</button>
+          <button mat-stroked-button (click)="updateFlavorCategoryAndStopEditing(category)">Save</button>
+        </div>
+      </ng-container>
+
+      <mat-card-content>
+        <div *ngFor="let flavor of getFlavorsByCategory(category)" class="flavor-item-restaurant-manager-flavor">
+          <ng-container *ngIf="editingFlavorId !== flavor.id">
+            {{ flavor.info }} <span class="flavor-price-restaurant-manager-flavor">$ {{ flavor.price }}</span>
+            <button mat-stroked-button (click)="startEditingFlavor(flavor.id)">Edit</button>
+            <button mat-stroked-button (click)="deleteFlavor(flavor.id)">Delete</button>
+          </ng-container>
+          <ng-container *ngIf="editingFlavorId === flavor.id">
+            <input [(ngModel)]="flavor.info" placeholder="Flavor info">
+            <div class="input-container">
+              <span class="currency">$</span>
+              <input [(ngModel)]="flavor.price" placeholder="Flavor price" type="number" class="price-input">
+            </div>
+            <button mat-stroked-button (click)="updateFlavorByIdAndStopEditing(flavor)">Update</button>
+          </ng-container>
+        </div>
+        <div class="flavor-add" *ngIf="addingFlavorCategoryId !== category.id">
+          <button mat-stroked-button (click)="startAddingFlavor(category.id)">Add a Flavor</button>
+        </div>
+        <ng-container *ngIf="addingFlavorCategoryId === category.id">
+          <div class="flavor-add-inputs">
+            <input [(ngModel)]="newFlavorInfo" placeholder="Add new flavor">
+            <div class="input-container">
+              <span class="currency" style="margin-left: 20px;" >$</span>
+              <input [(ngModel)]="newFlavorPrice" placeholder="Flavor price" type="number" class="price-input">
+            </div>
+            <button mat-stroked-button (click)="cancelAddingFlavor()">Cancel</button>
+            <button mat-stroked-button [disabled]="!newFlavorInfo || newFlavorPrice === null" (click)="addFlavorInCategory(category)">Submit</button>
+          </div>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="flavor-category-card">
+    <mat-card>
+      <mat-card-title>
+        <input [(ngModel)]="newCategory.type" placeholder="Add a Flavor Category">
+      </mat-card-title>
+      <mat-slide-toggle [(ngModel)]="newCategory.isSingleton">Is Singleton?</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="newCategory.isMandatory">Is Mandatory?</mat-slide-toggle>
+      <div class="RestaurantManagerFlavor-button-row">
+        <button mat-stroked-button (click)="addFlavorCategory()">Add Flavor Category</button>
+        <button mat-stroked-button (click)="cancelAddingFlavorCategory()">Cancel</button>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

@@ -1,0 +1,47 @@
+.menu-detail-content {
+  width: 400px;
+}
+
+.menu-image {
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.flavors {
+  margin-top: 20px;
+}
+
+.flavor-category {
+  margin-bottom: 10px;
+}
+
+.flavor-category-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+hr {
+  border: 0.5px solid #ccc;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+.flavor-info {
+  flex: 1;
+}
+
+.flavor-price {
+  display: inline-block;
+  text-align: left;
+  width: 5rem;
+}
+
+.mandatory {
+  color: red;
+  font-weight: bold;
+}

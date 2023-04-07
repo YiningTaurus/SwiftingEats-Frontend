@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{ menu.id !== -1 ? 'Edit' : 'Add' }} Menu</h2>
+<mat-dialog-content class="restaurant-manager-menu-detail mat-dialog-content">
+  <mat-form-field>
+    <mat-label>Menu Name</mat-label>
+    <input matInput [(ngModel)]="menu.name" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Price</mat-label>
+    <input matInput [(ngModel)]="menu.price" type="number" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Image URL</mat-label>
+    <input matInput [(ngModel)]="menu.image" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="menu.description"></textarea>
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="menu.isAvailable">Is Available</mat-checkbox>
+
+  <mat-form-field>
+    <mat-label>Menu Category</mat-label>
+    <input matInput [(ngModel)]="menu.menuCategory" required />
+  </mat-form-field>
+
+  <div>
+    <h3>Flavors</h3>
+    <ng-container *ngFor="let category of flavorCategories">
+      <h4>{{ category.type }}</h4>
+      <mat-checkbox
+        *ngFor="let flavor of getFlavorsByCategory(category.id)"
+        [(ngModel)]="selectedFlavorsMap[flavor.id]"
+        (change)="updateSelectedFlavors(flavor, $event.checked)"
+      >
+        {{ flavor.info }}
+      </mat-checkbox>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [disabled]="!menu.name" (click)="saveMenu()">
+    {{ menu.id !== -1 ? 'Update' : 'Create' }}
+  </button>
+</mat-dialog-actions>

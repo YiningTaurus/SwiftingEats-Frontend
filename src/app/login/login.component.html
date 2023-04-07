@@ -1,0 +1,23 @@
+<main class="container" style="margin-top: 80px; margin-bottom: 80px">
+  <mat-card fxFlex="100%" fxFlex.gt-xs="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title style="margin-top: 10px; margin-left: 20px; margin-bottom: 10px">Login</mat-card-title>
+    <form fxLayout="column" #loginForm="ngForm" (ngSubmit)="submit(loginForm)">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input ngModel name="username" matInput type="email" required email>
+        <mat-error *ngIf="loginForm.controls['username']?.hasError('required')">Username is required</mat-error>
+        <mat-error *ngIf="loginForm.controls['username']?.hasError('email')">Please enter a valid email address</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input ngModel name="password" matInput type="password" required minlength="3">
+        <mat-error>Password must be no less than 3 characters long</mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+        <a mat-button color="accent" routerLink="/register" style="margin-left: 20px">Don't have an account? Go sign up!</a>
+      </div>
+    </form>
+  </mat-card>
+</main>

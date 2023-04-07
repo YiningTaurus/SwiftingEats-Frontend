@@ -1,0 +1,32 @@
+.flavor-item-restaurant-manager-flavor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flavor-price-restaurant-manager-flavor {
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.input-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.currency {
+  margin-right: 10px;
+}
+
+.price-input {
+  margin-right: 10px;
+}
+
+.RestaurantManagerFlavor-button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.RestaurantManagerFlavor-card {
+  margin-bottom: 1px;
+}

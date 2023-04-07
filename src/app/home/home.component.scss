@@ -1,0 +1,65 @@
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5cce0d57a56827d8a1e83a3d/1593132146568-Z9DJJS8YQGDD9R8X2EWW/062220_MC_Pasadena-215.jpg?format=2500w');
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 500px;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.image-button {
+  position: relative;
+  flex: 1;
+  margin: 20px 35px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.image-button img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.image-button:hover img {
+  transform: scale(1.1);
+}
+
+.image-button p {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  text-shadow: 0 0 5px black;
+}

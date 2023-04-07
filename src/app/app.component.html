@@ -1,0 +1,13 @@
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer #shoppingCartDrawer mode="over" position="end">
+    <app-shopping-cart (closeDrawer)="shoppingCartDrawer.close()"></app-shopping-cart>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-header (cartIconClicked)="shoppingCartDrawer.toggle()"></app-header>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-drawer-content>
+</mat-drawer-container>

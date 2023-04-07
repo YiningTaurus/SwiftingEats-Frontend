@@ -1,0 +1,36 @@
+<div class="form-container">
+  <form (submit)="handleForm($event)">
+    <mat-form-field appearance="fill" class="input-field">
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="address" name="address" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-field">
+      <mat-label>Phone</mat-label>
+      <input matInput [(ngModel)]="phone" name="phone" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-field">
+      <mat-label>Remark</mat-label>
+      <textarea matInput [(ngModel)]="remark" name="remark"></textarea>
+    </mat-form-field>
+
+    <div class="input-field">
+      <label>Please select the currency to pay:</label>
+      <select name="currency" class="form-control" [ngModel]="currencyService.currencyCode" (change)="onCurrencyChange($event)">
+        <option value="USD">US Dollar</option>
+        <option value="CNY">Chinese Yuan</option>
+        <option value="JPY">Japanese Yen</option>
+      </select>
+    </div>
+
+    <div id="card-element"></div>
+    <div *ngIf="cardErrors" id="error-message">{{ cardErrors }}</div>
+
+    <button mat-raised-button type="submit" [disabled]="loading">
+      Buy for {{ amount | currencyExchange: currencyService.currencyCode | currency: currencyService.currencyCode }}
+    </button>
+  </form>
+</div>
+
+<div *ngIf="loading">Loading....</div>

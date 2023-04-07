@@ -1,0 +1,12 @@
+<div *ngIf="restaurant">
+  <h2>{{ restaurant.name }} Menu Manage </h2>
+</div>
+<div>
+  <div *ngFor="let menu of menus">
+    <div style="font-weight: bold; margin-bottom: 10px">{{ menu.name }}</div>
+    <button mat-stroked-button (click)="openManageMenuDetailDialog(menu)">Edit</button>
+    <button mat-stroked-button color="warn" (click)="deleteMenu(menu)">Delete</button>
+    <mat-divider style="margin-top: 20px; margin-bottom: 20px"></mat-divider>
+  </div>
+  <button mat-stroked-button (click)="openManageMenuDetailDialog(null)" style="margin-top: 5px">Add New Menu</button>
+</div>

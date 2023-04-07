@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-family: 'Handlee', cursive;
+  color: #4a4a4a;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.firework {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #EE7378;
+  border-radius: 50%;
+  animation: firework 1.5s linear infinite;
+  top: 36%;
+  left: 46%;
+  margin-top: -2.5px;
+  margin-left: -2.5px;
+}
+
+.firework:nth-of-type(2) {
+  animation-delay: 0.5s;
+  background-color: #4FBAAD;
+  transform: translate(-25%, -50%);
+}
+
+.firework:nth-of-type(3) {
+  animation-delay: 1s;
+  background-color: #FFD147;
+  transform: translate(25%, -50%);
+}
+
+@keyframes firework {
+  0% {
+    transform: translateY(100%);
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50%) scale(20);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+}

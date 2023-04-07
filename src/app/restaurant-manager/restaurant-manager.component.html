@@ -1,0 +1,21 @@
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+
+  <mat-tab label="Flavor Management">
+    <ng-template matTabContent>
+      <router-outlet *ngIf="activeTab === 0"></router-outlet>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Menu Management">
+    <ng-template matTabContent>
+      <router-outlet *ngIf="activeTab === 1"></router-outlet>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Order Management">
+    <ng-template matTabContent>
+      <router-outlet *ngIf="activeTab === 2"></router-outlet>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>
