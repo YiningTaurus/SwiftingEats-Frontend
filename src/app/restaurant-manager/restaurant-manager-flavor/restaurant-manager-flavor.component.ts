@@ -55,7 +55,9 @@ export class RestaurantManagerFlavorComponent implements OnInit {
 
   getAllFlavors(): void {
     this.flavorService.getFlavorsByRestaurantId(this.restaurant.id).subscribe((flavors) => {
-      this.flavors = flavors;
+      if(flavors !== null && flavors !== undefined){
+        this.flavors = flavors;
+      }
     });
   }
 

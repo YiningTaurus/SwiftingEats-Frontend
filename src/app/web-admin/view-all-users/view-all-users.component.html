@@ -1,0 +1,35 @@
+<div class="view-all-users-container">
+  <h1>Web Admin Dashboard</h1>
+
+  <mat-table [dataSource]="users" class="mat-elevation-z8">
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.username }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.role }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="restaurantName">
+      <mat-header-cell *matHeaderCellDef>Restaurant Name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.restaurant?.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="restaurantImage">
+      <mat-header-cell *matHeaderCellDef>Restaurant Image</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <img *ngIf="user.restaurant?.image" [src]="user.restaurant?.image" width="50" height="50" />
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="restaurantCategory">
+      <mat-header-cell *matHeaderCellDef>Restaurant Category</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.restaurant?.restaurantCategory }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

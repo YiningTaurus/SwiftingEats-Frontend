@@ -36,7 +36,6 @@ import {OrderService} from "./shared/service/order.service";
 import { OrderComponent } from './order/order.component';
 import { AccountComponent } from './account/account.component';
 import {UserDetailService} from "./shared/service/userDetail.service";
-import { WebAdminComponent } from './web-admin/web-admin.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -54,7 +53,6 @@ import { WebAdminComponent } from './web-admin/web-admin.component';
         SuccessComponent,
         OrderComponent,
         AccountComponent,
-        WebAdminComponent
     ],
 
     imports: [
@@ -84,8 +82,7 @@ import { WebAdminComponent } from './web-admin/web-admin.component';
         OrderService,
         UserDetailService
     ],
-    exports: [
-    ],
+    exports: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

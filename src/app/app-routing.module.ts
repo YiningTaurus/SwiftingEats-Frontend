@@ -30,6 +30,11 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-manager/restaurant-manager.module').then(m => m.RestaurantManagerModule),
     canActivate: [AuthGuard, RestaurantManagerGuard]
   },
+  {
+    path: 'web-admin',
+    loadChildren: () => import('./web-admin/web-admin.module').then(m => m.WebAdminModule),
+    canActivate: [AuthGuard, WebAdminGuard]
+  },
   { path: '**', redirectTo: 'home' }
 ];
 

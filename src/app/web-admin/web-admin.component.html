@@ -1,1 +1,16 @@
-<p>web-admin works!</p>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+
+  <mat-tab label="View All Users">
+    <ng-template matTabContent>
+      <router-outlet *ngIf="activeTab === 0"></router-outlet>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Add New Restaurant Manager">
+    <ng-template matTabContent>
+      <router-outlet *ngIf="activeTab === 1"></router-outlet>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>
+

@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatStepperModule} from "@angular/material/stepper";
 @NgModule({
   imports: [
     MatButtonModule,
@@ -45,6 +46,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatSlideToggleModule,
     MatCheckboxModule,
     MatTabsModule,
+    MatStepperModule
   ],
   exports: [
     MatButtonModule,
@@ -63,7 +65,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     CdkTableModule,
     FlexLayoutModule,
     MatDrawer,
-    FormsModule
+    FormsModule,
+    MatStepperModule
   ]
 })
 export class CustomStyleModule { }

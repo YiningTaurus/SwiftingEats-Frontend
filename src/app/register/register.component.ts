@@ -4,6 +4,7 @@ import {UserService} from "../shared/service/user.service";
 import {Router} from "@angular/router";
 import {User} from "../shared/model/user.model";
 import {Role} from "../shared/enum/role.enum";
+import {Restaurant} from "../shared/model/restaurant.model";
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit{
     private router: Router
   ) {
     const navigation = this.router.getCurrentNavigation();
+    console.log('Created navigation:', navigation);
     this.selectedRole = (navigation && navigation.extras.state && navigation.extras.state['role']) ? navigation.extras.state['role'] : Role.CUSTOMER;
     this.setRegisterButtonText();
   }
